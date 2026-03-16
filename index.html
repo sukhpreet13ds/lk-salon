@@ -6,49 +6,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LK Family - Salon</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/button.css">
 </head>
 
 <body>
 
+    <header>
+        <nav class="navbar navbar-expand-lg sticky-top">
+            <div class="container px-5">
+                <a class="navbar-brand position-relative" href="#">
+                    <img src="assets/logo.png" alt="LK Salon" class="main-logo">
+                </a>
+                
+                <button class="menu-toggle-btn d-lg-none" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
+                <div class="collapse navbar-collapse d-none d-lg-flex" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">SERVICES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">OUR WORK</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">CONTACT</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="#" class="btn-fold">
+                            <b>APPOINTMENT <span class="ms-2"><i class="fa-solid fa-arrow-right-long"></i></span></b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
+        <!-- Fullscreen Mobile Menu -->
+        <div class="mobile-menu-overlay" id="mobileMenu">
+            <button class="menu-close-btn" id="menuClose">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="menu-content">
+                <ul class="mobile-nav-list">
+                    <li><a href="#">HOME <i class="fa-solid fa-arrow-right-long"></i></a></li>
+                    <li><a href="#">SERVICES <i class="fa-solid fa-arrow-right-long"></i></a></li>
+                    <li><a href="#">OUR WORK <i class="fa-solid fa-arrow-right-long"></i></a></li>
+                    <li><a href="#">CONTACT <i class="fa-solid fa-arrow-right-long"></i></a></li>
+                </ul>
+                
+                <div class="menu-footer">
+                    <div class="mb-4">
+                        <a href="#" class="btn-fold w-100">
+                            <b>APPOINTMENT <span class="ms-2"><i class="fa-solid fa-arrow-right-long"></i></span></b>
+                        </a>
+                    </div>
+                    <div class="social-grid">
+                        <a href="#"><i class="fa-brands fa-youtube"></i> YOUTUBE</a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i> INSTAGRAM</a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i> TWITTER</a>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i> FACEBOOK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="hero-section">
+            <div class="hero-flex-container">
+                <!-- Column 1: Social Bar -->
+                <div class="col-socials">
+                    <div class="social-links-vertical">
+                        <a href="#"><i class="fa-brands fa-youtube"></i> YOUTUBE</a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i> INSTAGRAM</a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i> TWITTER</a>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i> FACEBOOK</a>
+                    </div>
+                </div>
 
+                <!-- Column 2: Side Man Image -->
+                <div class="col-man-image">
+                    <img src="assets/sidest-hair.png" alt="Shaving detail">
+                </div>
 
+                <!-- Column 3: Black content area (where logo hangs above) -->
+                <div class="col-hero-content">
+                </div>
 
+                <!-- Column 4: Big Big Salon Video -->
+                <div class="col-main-image">
+                    <video autoplay muted loop playsinline class="hero-video">
+                        <source src="assets/her-vid.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
 
+            <!-- Hero Content Overlay (Independent of columns for mobile) -->
+            <div class="hero-text-content">
+                <h1 class="hero-main-title">ELEVATE YOUR <br>BEAUTY. REFRESH <br><span id="dynamic-text">YOUR CONFIDENCE.</span></h1>
+                <p class="hero-description">Indulge in luxury hair and skin treatments designed to refresh your look, restore confidence, and leave you feeling beautifully renewed.</p>
+                
+                <div class="hero-btns-group">
+                    <a href="#" class="btn-fold">
+                        <b>EXPLORE OUR SERVICES <span class="ms-2"><i class="fa-solid fa-arrow-right-long"></i></span></b>
+                    </a>
+                    <a href="#" class="btn-fold btn-gold">
+                        <b>BOOK APPOINTMENT <span class="ms-2"><i class="fa-solid fa-arrow-right-long"></i></span></b>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
-        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script/script.js"></script>
 </body>
 
 </html>
