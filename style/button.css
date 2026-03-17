@@ -61,7 +61,10 @@
 .btn-fold.btn-gold {
   background-color: var(--accent-color, #CB9600);
 }
-
+.btn-fold.btn-black {
+  background-color: var(--dark-color, #000000);
+  border-radius: 5px;
+}
 .btn-fold i{
   transition: transform .4s ease-in-out;
 }
