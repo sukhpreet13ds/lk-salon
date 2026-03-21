@@ -9,7 +9,7 @@
   border: none;
   border-radius: 0.5em;
   color: var(--formal-color, #ffffff) !important;
-  box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0.5em 0.5em 0.5em rgba(0, 0, 0, 0.3); */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -32,14 +32,14 @@
     rgba(255, 255, 255, 0.3) 50%, 
     rgba(255, 255, 255, 0.1) 100%);
   border-radius: 0 0 0.5em 0;
-  box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.3); */
   transition: all 0.3s ease-in-out;
   z-index: 2;
 }
 
 .btn-fold:hover {
   clip-path: polygon(1.5em 0, 100% 0, 100% 100%, 0 100%, 0 1.5em);
-  box-shadow: 0.3em 0.3em 0.4em rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0.3em 0.3em 0.4em rgba(0, 0, 0, 0.3); */
 }
 
 .btn-fold:hover::before {

@@ -250,31 +250,115 @@
 }
 
 @media (max-width: 767px) {
-    .features-split-bg {
-        height: 400px;
+    .features-cards-row {
+        height: 412px; /* Fixed height to contain the stack */
+        position: relative;
+        margin-top: 40px;
+        display: block !important;
     }
-    .lk-features-prefix {
-        padding: 80px 0;
+    
+    .features-cards-row > div {
+        position: absolute !important;
+        width: 100% !important;
+        left: 0;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        cursor: pointer;
     }
-    .features-title {
-        font-size: 2.227rem;
+
+    /* Stack positioning - Background cards peak from TOP */
+    .features-cards-row > div:nth-child(1) { top: 0; z-index: 1; transform: scale(0.9); }
+    .features-cards-row > div:nth-child(2) { top: 45px; z-index: 2; transform: scale(0.95); }
+    .features-cards-row > div:nth-child(3) { top: 90px; z-index: 3; transform: scale(1); }
+
+    /* Active State (via JS) */
+    .features-cards-row > div.stack-active {
+        top: 160px !important; /* Move to bottom of stack area */
+        z-index: 10 !important;
+        transform: scale(1) translateY(0) !important;
     }
-    .features-subtitle {
+
+    /* Adjust sibling items when any item is active */
+    .features-cards-row > div.stack-behind-1 { top: 0px !important; z-index: 1 !important; transform: scale(0.9) !important; }
+    .features-cards-row > div.stack-behind-2 { top: 80px !important; z-index: 2 !important; transform: scale(0.95) !important; }
+
+    .features-cards-row > div.stack-active .feature-card {
+        box-shadow: 0 -20px 60px rgba(0,0,0,0.4);
+    }
+
+    /* Transform side-label to top-label on mobile */
+    .feature-card {
+        padding-left: 0;
+        padding-top: 60px;
+        margin-bottom: 0;
+        background: #fff;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .side-label {
+        width: 100% !important;
+        height: 60px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: auto;
+        flex-direction: row;
+        writing-mode: horizontal-tb;
+        padding: 0 20px;
+        justify-content: flex-start;
+    }
+
+    .side-label .label-content {
+        writing-mode: horizontal-tb;
+        transform: rotate(0deg);
+        flex-direction: row;
         font-size: 1.1rem;
+        gap: 12px;
     }
-    .features-header {
-        margin-bottom: 50px;
+
+    .side-label::after {
+        display: none;
+    }
+
+    .feature-image {
+        border-radius: 0;
+        box-shadow: none;
+        aspect-ratio: 16/10;
+    }
+
+    .features-split-bg {
+        height: 600px;
+    }
+    
+    .lk-features-prefix {
+        padding-bottom: 150px; /* Space for the stack overhang */
+    }
+
+    /* Disable Hover Effects on Mobile */
+    .feature-card:hover .feature-image img {
+        transform: none !important;
+    }
+
+    .feature-card:hover .side-label {
+        width: 100% !important;
+    }
+
+    .feature-card:hover .side-label .label-content {
+        writing-mode: horizontal-tb !important;
+        transform: none !important;
+        flex-direction: row !important;
+        gap: 12px !important;
+    }
+
+    .feature-card:hover .label-content img {
+        width: 35px !important;
+        transform: inherit !important;
+    }
+
+    /* Specific reset for 2nd and 3rd card icons */
+    .feature-card:hover .side-label.makeup .label-content img,
+    .feature-card:hover .side-label.skin-care .label-content img {
+        transform: rotate(0deg) !important;
     }
 }
 
-@media (max-width: 575px) {
-    .feature-card {
-        padding-left: 40px;
-    }
-    .side-label {
-        width: 40px;
-    }
-    .side-label .label-content {
-        font-size: 0.85rem;
-    }
-}

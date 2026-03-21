@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const dynamicText = document.getElementById('dynamic-text');
     const texts = [
-        "YOUR CONFIDENCE.",
-        "YOUR RADIANCE.",
-        "YOUR ELEGANCE.",
-        "YOUR LOOK.",
-        "YOUR SHINE."
+        "CONFIDENCE.",
+        "RADIANCE.",
+        "ELEGANCE.",
+        "LOOK.",
+        "SHINE."
     ];
     let currentIndex = 0;
 
@@ -120,68 +120,159 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Feedback Slider Logic
-    const track = document.getElementById('feedbackTrack');
-    const dots = document.querySelectorAll('#feedbackDots .dot');
-    const container = document.querySelector('.feedback-slider-container');
+    // ── Rebuilt Feedback Slider (Infinite Loop + Responsive) ──
+    const fbContainer = document.querySelector('.feedback-slider-container');
+    const fbTrack = document.getElementById('feedbackTrack');
+    const fbDotsContainer = document.getElementById('feedbackDots');
     
-    if (track && container) {
-        let isPressed = false;
-        let startX;
-        let scrollLeft;
+    if (fbContainer && fbTrack) {
+        let items = Array.from(fbTrack.children);
+        let perView = window.innerWidth < 768 ? 1 : (window.innerWidth < 1200 ? 2 : 3);
+        const cardGap = perView === 1 ? 0 : 30; // Matches CSS responsive gap
+        let currentIndex = perView; 
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID;
         let autoSlideInterval;
 
-        const startAutoSlide = () => {
-            autoSlideInterval = setInterval(() => {
-                const maxScroll = track.scrollWidth - container.offsetWidth;
-                if (container.scrollLeft >= maxScroll - 10) {
-                    container.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    // Slide by one full 'page' (container width)
-                    container.scrollBy({ left: container.offsetWidth + 30, behavior: 'smooth' });
-                }
-            }, 5000); // 5 seconds per view
+        // 1. Clone items for seamless loop
+        const firstClones = items.slice(0, perView).map(el => el.cloneNode(true));
+        const lastClones = items.slice(-perView).map(el => el.cloneNode(true));
+        
+        lastClones.reverse().forEach(clone => fbTrack.prepend(clone));
+        firstClones.forEach(clone => fbTrack.appendChild(clone));
+        
+        const allCards = Array.from(fbTrack.children);
+
+        // 2. Dots Logic (Once + Update)
+        const initDots = () => {
+            if (!fbDotsContainer) return;
+            fbDotsContainer.innerHTML = '';
+            const pageCount = items.length > 6 ? 6 : items.length; // Max 6 clean dots
+            
+            for (let i = 0; i < pageCount; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                dot.addEventListener('click', () => {
+                    stopAutoSlide();
+                    // Maps dot index to card index
+                    const targetCardIndex = Math.round((i / (pageCount - 1)) * (items.length - 1)) + perView;
+                    goToIndex(targetCardIndex);
+                    startAutoSlide();
+                });
+                fbDotsContainer.appendChild(dot);
+            }
         };
 
-        const stopAutoSlide = () => clearInterval(autoSlideInterval);
-
-        // Dragging Logic
-        container.addEventListener('mousedown', (e) => {
-            isPressed = true;
-            startX = e.pageX - container.offsetLeft;
-            scrollLeft = container.scrollLeft;
-            stopAutoSlide();
-        });
-
-        container.addEventListener('mouseleave', () => {
-            isPressed = false;
-            startAutoSlide();
-        });
-
-        container.addEventListener('mouseup', () => {
-            isPressed = false;
-            startAutoSlide();
-        });
-
-        container.addEventListener('mousemove', (e) => {
-            if (!isPressed) return;
-            e.preventDefault();
-            const x = e.pageX - container.offsetLeft;
-            const walk = (x - startX) * 2;
-            container.scrollLeft = scrollLeft - walk;
-        });
-
-        // Initialize Auto Slide
-        startAutoSlide();
-
-        // Update Dots based on 'pages' (3 cards per page)
-        container.addEventListener('scroll', () => {
-            const pageIndex = Math.round(container.scrollLeft / container.offsetWidth);
+        const updateDots = () => {
+            const dots = fbDotsContainer.querySelectorAll('.dot');
+            if (dots.length === 0) return;
+            
+            // Map current card progress to dot index
+            const progress = (currentIndex - perView + items.length) % items.length;
+            const activeDotIndex = Math.round((progress / (items.length - 1)) * (dots.length - 1));
             
             dots.forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === pageIndex);
+                dot.classList.toggle('active', idx === activeDotIndex);
             });
+        };
+
+        const getCardWidth = () => {
+            const containerWidth = fbContainer.offsetWidth;
+            if (perView === 1) return containerWidth;
+            return (containerWidth - (cardGap * (perView - 1))) / perView;
+        };
+
+        const setPositionByIndex = (smooth = true) => {
+            const cardWidth = getCardWidth();
+            currentTranslate = -currentIndex * (cardWidth + cardGap);
+            prevTranslate = currentTranslate;
+            fbTrack.style.transition = smooth ? 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)' : 'none';
+            fbTrack.style.transform = `translateX(${currentTranslate}px)`;
+            updateDots();
+        };
+
+        const goToIndex = (index) => {
+            currentIndex = index;
+            setPositionByIndex();
+            
+            // Handle seamless jump
+            setTimeout(() => {
+                if (currentIndex >= allCards.length - perView) {
+                    currentIndex = perView;
+                    setPositionByIndex(false);
+                }
+                if (currentIndex < perView) {
+                    currentIndex = allCards.length - (perView * 2);
+                    setPositionByIndex(false);
+                }
+            }, 600);
+        };
+
+        // 3. Interactions
+        const startAutoSlide = () => {
+            autoSlideInterval = setInterval(() => {
+                goToIndex(currentIndex + 1);
+            }, 4000);
+        };
+        const stopAutoSlide = () => clearInterval(autoSlideInterval);
+
+        fbContainer.addEventListener('mouseenter', stopAutoSlide);
+        fbContainer.addEventListener('mouseleave', startAutoSlide);
+
+        // Dragging
+        const touchStart = (index) => (e) => {
+            stopAutoSlide();
+            isDragging = true;
+            startPos = (e.type.includes('mouse')) ? e.pageX : e.touches[0].clientX;
+            animationID = requestAnimationFrame(animation);
+        };
+
+        const touchMove = (e) => {
+            if (!isDragging) return;
+            const currentPosition = (e.type.includes('mouse')) ? e.pageX : e.touches[0].clientX;
+            const diff = currentPosition - startPos;
+            currentTranslate = prevTranslate + diff;
+        };
+
+        const touchEnd = () => {
+            isDragging = false;
+            cancelAnimationFrame(animationID);
+            const movedBy = currentTranslate - prevTranslate;
+
+            if (movedBy < -100) goToIndex(currentIndex + 1);
+            else if (movedBy > 100) goToIndex(currentIndex - 1);
+            else setPositionByIndex();
+            
+            startAutoSlide();
+        };
+
+        const animation = () => {
+            fbTrack.style.transform = `translateX(${currentTranslate}px)`;
+            if (isDragging) requestAnimationFrame(animation);
+        };
+
+        fbTrack.addEventListener('mousedown', touchStart(currentIndex));
+        fbTrack.addEventListener('touchstart', touchStart(currentIndex));
+        fbTrack.addEventListener('mousemove', touchMove);
+        fbTrack.addEventListener('touchmove', touchMove);
+        fbTrack.addEventListener('mouseup', touchEnd);
+        fbTrack.addEventListener('touchend', touchEnd);
+        fbTrack.addEventListener('mouseleave', () => { if(isDragging) touchEnd(); });
+
+        // Resize
+        window.addEventListener('resize', () => {
+            perView = window.innerWidth < 768 ? 1 : (window.innerWidth < 1200 ? 2 : 3);
+            setPositionByIndex(false);
         });
+
+        // Initialize
+        initDots();
+        setPositionByIndex(false);
+        startAutoSlide();
+        updateDots();
     }
 
     // About Section Slideshow Logic
@@ -191,17 +282,42 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentAboutIndex = 0;
 
         function nextAboutSlide() {
-            // Remove active class from CURRENT
             slides[currentAboutIndex].classList.remove('active');
-            
-            // Increment index
             currentAboutIndex = (currentAboutIndex + 1) % slides.length;
-            
-            // Add active class to NEW
             slides[currentAboutIndex].classList.add('active');
         }
+        setInterval(nextAboutSlide, 2500);
+    }
 
-        // Set interval for slideshow (4 seconds)
-        setInterval(nextAboutSlide, 4000);
+    // Mobile Feature Stack Interaction
+    const featureStackRow = document.querySelector('.features-cards-row');
+    if (featureStackRow) {
+        const stackItems = Array.from(featureStackRow.children);
+        
+        stackItems.forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth >= 768) return;
+
+                if (!item.classList.contains('stack-active')) {
+                    // Remove ALL stack classes from all items
+                    stackItems.forEach(el => {
+                        el.classList.remove('stack-active', 'stack-behind-1', 'stack-behind-2');
+                    });
+                    
+                    // Set current item to ACTIVE (moves to bottom, but z-index front)
+                    item.classList.add('stack-active');
+                    
+                    // Assign others to the "Behind" positions (top tabs)
+                    const others = stackItems.filter(el => el !== item);
+                    if (others[0]) others[0].classList.add('stack-behind-1');
+                    if (others[1]) others[1].classList.add('stack-behind-2');
+                }
+            });
+        });
+
+        // Initialize (Third item is active to show the stack below it by default)
+        if (window.innerWidth < 768 && stackItems[2]) {
+            stackItems[2].click();
+        }
     }
 });

@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/button.css">
     <link rel="stylesheet" href="style/features.css">
+    <link rel="stylesheet" href="style/scroll-animations.css">
 </head>
 
 <body>
 
-    <header>
+   <header>
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container px-5">
                 <a class="navbar-brand position-relative" href="#">
@@ -34,13 +35,13 @@
                             <a class="nav-link active" href="#">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">SERVICES</a>
+                            <a class="nav-link" href="service.html">SERVICES</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">OUR WORK</a>
+                            <a class="nav-link" href="work.html">OUR WORK</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">CONTACT</a>
+                            <a class="nav-link" href="contact-us.html">CONTACT</a>
                         </li>
                     </ul>
                     <div class="d-flex">
@@ -59,10 +60,10 @@
             </button>
             <div class="menu-content">
                 <ul class="mobile-nav-list">
-                    <li><a href="#">HOME <i class="fa-solid fa-arrow-right-long"></i></a></li>
-                    <li><a href="#">SERVICES <i class="fa-solid fa-arrow-right-long"></i></a></li>
-                    <li><a href="#">OUR WORK <i class="fa-solid fa-arrow-right-long"></i></a></li>
-                    <li><a href="#">CONTACT <i class="fa-solid fa-arrow-right-long"></i></a></li>
+                    <li><a href="index.html" class="active">HOME <i class="fa-solid fa-arrow-right-long"></i></a></li>
+                    <li><a href="service.html">SERVICES <i class="fa-solid fa-arrow-right-long"></i></a></li>
+                    <li><a href="work.html">OUR WORK <i class="fa-solid fa-arrow-right-long"></i></a></li>
+                    <li><a href="contact-us.html">CONTACT <i class="fa-solid fa-arrow-right-long"></i></a></li>
                 </ul>
                 
                 <div class="menu-footer">
@@ -74,7 +75,7 @@
                     <div class="social-grid">
                         <a href="#"><i class="fa-brands fa-youtube"></i> YOUTUBE</a>
                         <a href="#"><i class="fa-brands fa-instagram"></i> INSTAGRAM</a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i> TWITTER</a>
+                        <a href="#"><i class="fa-brands fa-pinterest"></i> PINTEREST</a>
                         <a href="#"><i class="fa-brands fa-facebook-f"></i> FACEBOOK</a>
                     </div>
                 </div>
@@ -89,7 +90,7 @@
                     <div class="social-links-vertical">
                         <a href="#"><i class="fa-brands fa-youtube"></i> YOUTUBE</a>
                         <a href="#"><i class="fa-brands fa-instagram"></i> INSTAGRAM</a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i> TWITTER</a>
+                        <a href="#"><i class="fa-brands fa-pinterest"></i> PINTEREST</a>
                         <a href="#"><i class="fa-brands fa-facebook-f"></i> FACEBOOK</a>
                     </div>
                 </div>
@@ -114,7 +115,7 @@
 
             <!-- Hero Content Overlay (Independent of columns for mobile) -->
             <div class="hero-text-content">
-                <h1 class="hero-main-title">ELEVATE YOUR <br>BEAUTY. REFRESH <br><span id="dynamic-text">YOUR CONFIDENCE.</span></h1>
+                <h1 class="hero-main-title">ELEVATE YOUR <br>BEAUTY. REFRESH <br>YOUR <span id="dynamic-text">CONFIDENCE.</span></h1>
                 <p class="hero-description">Indulge in luxury hair and skin treatments designed to refresh your look, restore confidence, and leave you feeling beautifully renewed.</p>
                 
                 <div class="hero-btns-group">
@@ -139,13 +140,12 @@
             </div>
 
             <div class="container text-center">
-                
-                <div class="features-header">
+                <div class="features-header" data-reveal="fade-up">
                     <h2 class="features-title">WHY CHOOSE LK FAMILY SALON</h2>
                     <p class="features-subtitle">When every hairstyle started to look the same, a visionary brother-sister duo set out to change the story — transforming not just your hair, but your entire experience.</p>
                 </div>
 
-                <div class="row features-cards-row g-4">
+                <div class="row features-cards-row g-4" data-reveal-stagger>
                     <!-- Card 1 -->
                     <div class="col-lg-4 col-md-6">
                         <div class="feature-card">
@@ -203,15 +203,17 @@
                             <img src="assets/about-bg.png" alt="Decoration" class="img-fluid">
                         </div>
                         <!-- Main interior image slideshow -->
-                        <div class="about-main-image about-slideshow-container">
+                        <div class="about-main-image about-slideshow-container" data-reveal="fade-left">
                             <img src="assets/About.png" alt="LK Family Salon Interior" class="img-fluid about-slide active">
                             <img src="assets/about2.jpg" alt="LK Family Salon Interior" class="img-fluid about-slide">
                             <img src="assets/about3.jpg" alt="LK Family Salon Interior" class="img-fluid about-slide">
+                            <img src="assets/about4.jpg" alt="LK Family Salon Interior" class="img-fluid about-slide">
+                            <img src="assets/about5.jpg" alt="LK Family Salon Interior" class="img-fluid about-slide">
                         </div>
                     </div>
                     
                     <!-- Right: Content Column -->
-                    <div class="col-lg-6 px-lg-5">
+                    <div class="col-lg-6 px-lg-5" data-reveal="fade-right">
                         <div class="about-content">
                             <div class="mb-4">
                                 <img src="assets/logo.png" alt="LK Salon" class="about-logo">
@@ -248,7 +250,7 @@
             </div>
 
             <div class="container position-relative z-3">
-                <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-4 text-center">
+                <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-4 text-center" data-reveal="fade-up">
                     <h2 class="cta-text">READY TO GET OUR SERVICE ?</h2>
                     <a href="#" class="btn-fold">
                         <b>APPOINTMENT NOW <span class="ms-2"><i class="fa-solid fa-arrow-right-long"></i></span></b>
@@ -260,7 +262,7 @@
          <section class="lk-service-section-data">
                 <div class="container position-relative" style="z-index:2;">
                     <!-- Header -->
-                    <div class="text-center ssd-header">
+                    <div class="text-center ssd-header" data-reveal="fade-up">
                         <!-- Watermark background text -->
                         <div class="ssd-bg-watermark">
                             <img src="assets/services-bg.png" alt="">
@@ -270,7 +272,7 @@
                     </div>
 
                     <!-- Service Boxes -->
-                    <div class="row justify-content-center g-1 ssd-boxes-row">
+                    <div class="row justify-content-center g-1 ssd-boxes-row" data-reveal-stagger>
                         <div class="col-lg-3 col-md-6 col-6">
                             <div class="ssd-box">
                                 <img src="assets/box-1.png" alt="Skin Care" class="ssd-box-icon">
@@ -300,7 +302,7 @@
                 </div>
 
                 <!-- Info Cards Row -->
-                <div class="container ssd-info-container">
+                <div class="container ssd-info-container" data-reveal="zoom-in">
                     <div class="row g-4 justify-content-center align-items-stretch ssd-info-row">
                         <!-- Working Hours -->
                         <div class="col-lg-4 col-md-12">
@@ -358,7 +360,7 @@
 
             <div class="container gal-header-container">
                 <!-- Header -->
-                <div class="text-center gal-header">
+                <div class="text-center gal-header" data-reveal="fade-up">
                     <!-- Watermark background text -->
                     <div class="gal-bg-watermark">
                         <img src="assets/gallery.png" alt="">
@@ -368,7 +370,7 @@
                 </div>
 
                 <!-- Gallery Grid -->
-                <div class="row g-2 gal-grid-row">
+                <div class="row g-2 gal-grid-row" data-reveal-stagger>
                     <!-- Row 1: 1st is wide (col-6), others normal (col-3) -->
                     <div class="col-lg-6 col-md-12 order-lg-1 order-1">
                         <a href="#" class="gal-img-box">
@@ -439,12 +441,12 @@
         <section class="lk-pricing-section">
             <div class="pricing-overlay"></div>
             <div class="container pricing-container">
-                <div class="text-center pricing-header">
+                <div class="text-center pricing-header" data-reveal="fade-up">
                     <h2 class="pricing-title">AWESOME PRICING PLAN</h2>
                 </div>
 
                 <div class="pricing-tabs-wrapper">
-                    <ul class="nav nav-tabs pricing-nav" id="pricingTabs" role="tablist">
+                    <ul class="nav nav-tabs pricing-nav" id="pricingTabs" role="tablist" data-reveal="fade-up">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="skin-tab" data-bs-toggle="tab" data-bs-target="#skin-pane" type="button" role="tab" aria-selected="true">
                                 <img src="assets/box-1.png" alt="">
@@ -480,53 +482,53 @@
                         <!-- Skin Care Pane -->
                         <div class="tab-pane fade show active" id="skin-pane" role="tabpanel" aria-labelledby="skin-tab">
                             <div class="row g-3">
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price.png" class="price-avatar"><div class="price-info"><h4>Fruit Concern</h4><p>Clean & simple 40 minutes</p></div><span class="price-val">$63</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price2.png" class="price-avatar"><div class="price-info"><h4>Magic Diamond</h4><p>Clean & simple 50 minutes</p></div><span class="price-val">$43</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price3.png" class="price-avatar"><div class="price-info"><h4>Magic Pearl</h4><p>Clean & simple 40 minutes</p></div><span class="price-val">$74</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price4.png" class="price-avatar"><div class="price-info"><h4>De-Tan Facial</h4><p>Clean & simple 50 minutes</p></div><span class="price-val">$89</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price5.png" class="price-avatar"><div class="price-info"><h4>Fairness & Hydrating</h4><p>Clean & simple 30-40 minutes</p></div><span class="price-val">$45</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price6.png" class="price-avatar"><div class="price-info"><h4>Marmalade Radiance</h4><p>Clean & simple 50 minutes</p></div><span class="price-val">$35</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price7.png" class="price-avatar"><div class="price-info"><h4>Gold Glow</h4><p>Clean & simple 30-40 minutes</p></div><span class="price-val">$56</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price8.png" class="price-avatar"><div class="price-info"><h4>Vitamin-C Facial</h4><p>Clean & simple 30-40 minutes</p></div><span class="price-val">$27</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price.png" class="price-avatar"><div class="price-info"><h4>Fruit Concern</h4><p>Clean & simple 40 minutes</p></div><span class="price-val">$63</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price2.png" class="price-avatar"><div class="price-info"><h4>Magic Diamond</h4><p>Clean & simple 50 minutes</p></div><span class="price-val">$43</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price3.png" class="price-avatar"><div class="price-info"><h4>Magic Pearl</h4><p>Clean & simple 40 minutes</p></div><span class="price-val">$74</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price4.png" class="price-avatar"><div class="price-info"><h4>De-Tan Facial</h4><p>Clean & simple 50 minutes</p></div><span class="price-val">$89</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price5.png" class="price-avatar"><div class="price-info"><h4>Fairness & Hydrating</h4><p>Clean & simple 30-40 minutes</p></div><span class="price-val">$45</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price6.png" class="price-avatar"><div class="price-info"><h4>Marmalade Radiance</h4><p>Clean & simple 50 minutes</p></div><span class="price-val">$35</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price7.png" class="price-avatar"><div class="price-info"><h4>Gold Glow</h4><p>Clean & simple 30-40 minutes</p></div><span class="price-val">$56</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price8.png" class="price-avatar"><div class="price-info"><h4>Vitamin-C Facial</h4><p>Clean & simple 30-40 minutes</p></div><span class="price-val">$27</span></div></div>
                             </div>
                         </div>
                         <!-- Hair Essentials Pane -->
                         <div class="tab-pane fade" id="hair-pane" role="tabpanel" aria-labelledby="hair-tab">
                             <div class="row g-3">
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price8.png" class="price-avatar"><div class="price-info"><h4>Hair Coloring</h4><p>Professional touch 60 minutes</p></div><span class="price-val">$120</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price7.png" class="price-avatar"><div class="price-info"><h4>Keratin Treatment</h4><p>Smooth hair 90 minutes</p></div><span class="price-val">$150</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price6.png" class="price-avatar"><div class="price-info"><h4>Haircut & Styling</h4><p>Modern cut 45 minutes</p></div><span class="price-val">$65</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price5.png" class="price-avatar"><div class="price-info"><h4>Scalp Massage</h4><p>Relaxing 30 minutes</p></div><span class="price-val">$40</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price4.png" class="price-avatar"><div class="price-info"><h4>Deep Conditioning</h4><p>Repair hair 40 minutes</p></div><span class="price-val">$55</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price3.png" class="price-avatar"><div class="price-info"><h4>Blow Dry</h4><p>Quick styling 30 minutes</p></div><span class="price-val">$30</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price2.png" class="price-avatar"><div class="price-info"><h4>Bridal Hair</h4><p>Special day 120 minutes</p></div><span class="price-val">$200</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price.png" class="price-avatar"><div class="price-info"><h4>Gents Haircut</h4><p>Classic 30 minutes</p></div><span class="price-val">$25</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price8.png" class="price-avatar"><div class="price-info"><h4>Hair Coloring</h4><p>Professional touch 60 minutes</p></div><span class="price-val">$120</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price7.png" class="price-avatar"><div class="price-info"><h4>Keratin Treatment</h4><p>Smooth hair 90 minutes</p></div><span class="price-val">$150</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price6.png" class="price-avatar"><div class="price-info"><h4>Haircut & Styling</h4><p>Modern cut 45 minutes</p></div><span class="price-val">$65</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price5.png" class="price-avatar"><div class="price-info"><h4>Scalp Massage</h4><p>Relaxing 30 minutes</p></div><span class="price-val">$40</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price4.png" class="price-avatar"><div class="price-info"><h4>Deep Conditioning</h4><p>Repair hair 40 minutes</p></div><span class="price-val">$55</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price3.png" class="price-avatar"><div class="price-info"><h4>Blow Dry</h4><p>Quick styling 30 minutes</p></div><span class="price-val">$30</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price2.png" class="price-avatar"><div class="price-info"><h4>Bridal Hair</h4><p>Special day 120 minutes</p></div><span class="price-val">$200</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price.png" class="price-avatar"><div class="price-info"><h4>Gents Haircut</h4><p>Classic 30 minutes</p></div><span class="price-val">$25</span></div></div>
                             </div>
                         </div>
                         <!-- Makeup Pane -->
                         <div class="tab-pane fade" id="makeup-pane" role="tabpanel" aria-labelledby="makeup-tab">
                             <div class="row g-3">
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price2.png" class="price-avatar"><div class="price-info"><h4>Bridal Makeup</h4><p>Glamorous look 120 minutes</p></div><span class="price-val">$250</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price5.png" class="price-avatar"><div class="price-info"><h4>Party Makeup</h4><p>Fresh & chic 60 minutes</p></div><span class="price-val">$80</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price8.png" class="price-avatar"><div class="price-info"><h4>Eye Makeup</h4><p>Smokey eyes 30 minutes</p></div><span class="price-val">$35</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price3.png" class="price-avatar"><div class="price-info"><h4>Engagement Look</h4><p>Elegant 90 minutes</p></div><span class="price-val">$150</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price.png" class="price-avatar"><div class="price-info"><h4>Eyelash Extension</h4><p>Lush lashes 60 minutes</p></div><span class="price-val">$60</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price7.png" class="price-avatar"><div class="price-info"><h4>Basic Touchup</h4><p>Quick fix 15 minutes</p></div><span class="price-val">$20</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price4.png" class="price-avatar"><div class="price-info"><h4>HD Makeup</h4><p>Flawless 90 minutes</p></div><span class="price-val">$180</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price6.png" class="price-avatar"><div class="price-info"><h4>Face Contouring</h4><p>Sharp features 30 minutes</p></div><span class="price-val">$45</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price2.png" class="price-avatar"><div class="price-info"><h4>Bridal Makeup</h4><p>Glamorous look 120 minutes</p></div><span class="price-val">$250</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price5.png" class="price-avatar"><div class="price-info"><h4>Party Makeup</h4><p>Fresh & chic 60 minutes</p></div><span class="price-val">$80</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price8.png" class="price-avatar"><div class="price-info"><h4>Eye Makeup</h4><p>Smokey eyes 30 minutes</p></div><span class="price-val">$35</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price3.png" class="price-avatar"><div class="price-info"><h4>Engagement Look</h4><p>Elegant 90 minutes</p></div><span class="price-val">$150</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price.png" class="price-avatar"><div class="price-info"><h4>Eyelash Extension</h4><p>Lush lashes 60 minutes</p></div><span class="price-val">$60</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price7.png" class="price-avatar"><div class="price-info"><h4>Basic Touchup</h4><p>Quick fix 15 minutes</p></div><span class="price-val">$20</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price4.png" class="price-avatar"><div class="price-info"><h4>HD Makeup</h4><p>Flawless 90 minutes</p></div><span class="price-val">$180</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price6.png" class="price-avatar"><div class="price-info"><h4>Face Contouring</h4><p>Sharp features 30 minutes</p></div><span class="price-val">$45</span></div></div>
                             </div>
                         </div>
                         <!-- Hands & Feet Pane -->
                         <div class="tab-pane fade" id="hands-pane" role="tabpanel" aria-labelledby="hands-tab">
                             <div class="row g-3">
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price2.png" class="price-avatar"><div class="price-info"><h4>Luxury Manicure</h4><p>Hand care 45 minutes</p></div><span class="price-val">$50</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price4.png" class="price-avatar"><div class="price-info"><h4>Spa Pedicure</h4><p>Foot care 60 minutes</p></div><span class="price-val">$65</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price7.png" class="price-avatar"><div class="price-info"><h4>Nail Art</h4><p>Creative designs 45 minutes</p></div><span class="price-val">$40</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price8.png" class="price-avatar"><div class="price-info"><h4>Gel Polish</h4><p>Long lasting 30 minutes</p></div><span class="price-val">$35</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price5.png" class="price-avatar"><div class="price-info"><h4>Paraffin Wax</h4><p>Soft skin 20 minutes</p></div><span class="price-val">$25</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price3.png" class="price-avatar"><div class="price-info"><h4>Hand Massage</h4><p>Relaxing 20 minutes</p></div><span class="price-val">$20</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price.png" class="price-avatar"><div class="price-info"><h4>French Mani</h4><p>Classic look 50 minutes</p></div><span class="price-val">$55</span></div></div>
-                                <div class="col-lg-6"><div class="price-item"><img src="assets/avatar-price6.png" class="price-avatar"><div class="price-info"><h4>Heel Peel</h4><p>Soft feet 30 minutes</p></div><span class="price-val">$45</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price2.png" class="price-avatar"><div class="price-info"><h4>Luxury Manicure</h4><p>Hand care 45 minutes</p></div><span class="price-val">$50</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price4.png" class="price-avatar"><div class="price-info"><h4>Spa Pedicure</h4><p>Foot care 60 minutes</p></div><span class="price-val">$65</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price7.png" class="price-avatar"><div class="price-info"><h4>Nail Art</h4><p>Creative designs 45 minutes</p></div><span class="price-val">$40</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price8.png" class="price-avatar"><div class="price-info"><h4>Gel Polish</h4><p>Long lasting 30 minutes</p></div><span class="price-val">$35</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price5.png" class="price-avatar"><div class="price-info"><h4>Paraffin Wax</h4><p>Soft skin 20 minutes</p></div><span class="price-val">$25</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price3.png" class="price-avatar"><div class="price-info"><h4>Hand Massage</h4><p>Relaxing 20 minutes</p></div><span class="price-val">$20</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price.png" class="price-avatar"><div class="price-info"><h4>French Mani</h4><p>Classic look 50 minutes</p></div><span class="price-val">$55</span></div></div>
+                                <div class="col-lg-6 col-md-6 col-6"><div class="price-item"><img src="assets/avatar-price6.png" class="price-avatar"><div class="price-info"><h4>Heel Peel</h4><p>Soft feet 30 minutes</p></div><span class="price-val">$45</span></div></div>
                             </div>
                         </div>
                     </div>
@@ -539,10 +541,10 @@
             <div class="form-split-bg"></div>
             
             <!-- Floating Background Icons -->
-            <div class="form-floating-icon left-icon">
+            <div class="form-floating-icon left-icon" data-reveal="fade-right">
                 <img src="assets/left-form-icon.png" alt="">
             </div>
-            <div class="form-floating-icon right-icon">
+            <div class="form-floating-icon right-icon" data-reveal="fade-left">
                 <img src="assets/right-form-icon.png" alt="">
             </div>
 
@@ -557,7 +559,7 @@
 
                     <!-- Center Form Content (Wider) -->
                     <div class="col-lg-8 col-md-12">
-                        <div class="form-center-content">
+                        <div class="form-center-content" data-reveal="zoom-in">
                             <div class="form-header text-center">
                                 <h2 class="form-title">READY FOR A NEW LOOK?</h2>
                                 <p class="form-subtitle">Book your appointment today and let our experts take care of the rest. Luxury, relaxation, and beauty — all in one place.</p>
@@ -613,7 +615,7 @@
         <section class="ik-salon-feedback-section">
             <div class="container overflow-visible">
                 <!-- Header with Watermark -->
-                <div class="feedback-header text-center position-relative">
+                <div class="feedback-header text-center position-relative" data-reveal="fade-up">
                     <div class="feedback-watermark">
                         <img src="assets/feedback.png" alt="">
                     </div>
@@ -621,7 +623,7 @@
                 </div>
 
                 <!-- Feedback Slider Outer -->
-                <div class="feedback-slider-container">
+                <div class="feedback-slider-container" data-reveal="fade-up">
                     <div class="feedback-slider-track" id="feedbackTrack">
                         <!-- Card 1 -->
                         <div class="feedback-card">
@@ -946,7 +948,7 @@
 
 
 
-        <!-- Footer Section -->
+      <!-- Footer Section -->
         <footer class="lk-salon-footer">
             <!-- Floating Background SVGs -->
             <div class="footer-bg-svgs">
@@ -1013,7 +1015,7 @@
                 <div class="footer-top-bar">
                     <div class="row align-items-center">
                         <div class="col-lg-4 mb-4 mb-lg-0">
-                            <a href="#" class="footer-logo">
+                            <a href="#" class="footer-logo">    
                                 <img src="assets/logo.png" alt="LK Salon" class="img-fluid">
                             </a>
                         </div>
@@ -1033,7 +1035,7 @@
                         <div class="col-lg-3 col-md-6 col-6 footer-col">
                             <h4 class="footer-col-title">QUICK LINKS</h4>
                             <ul class="footer-links">
-                                <li><a href="#">Our Services</a></li>
+                                <li><a href="service.html">Our Services</a></li>
                                 <li><a href="#">Meet Our Team</a></li>
                                 <li><a href="#">Our Portfolio</a></li>
                                 <li><a href="#">Need a Career?</a></li>
@@ -1132,6 +1134,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script/script.js"></script>
+    <script src="script/scroll-animations.js"></script>
 </body>
 
 </html>
