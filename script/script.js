@@ -1,38 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
     const dynamicText = document.getElementById('dynamic-text');
-    const texts = [
-        "CONFIDENCE.",
-        "RADIANCE.",
-        "ELEGANCE.",
-        "LOOK.",
-        "SHINE."
-    ];
-    let currentIndex = 0;
+    if (dynamicText) {
+        const texts = [
+            "CONFIDENCE.",
+            "RADIANCE.",
+            "ELEGANCE.",
+            "LOOK.",
+            "SHINE."
+        ];
+        let currentIndex = 0;
 
-    function rotateText() {
-        // Step 1: Fade out the current text
-        dynamicText.classList.add('fade-out');
+        function rotateText() {
+            dynamicText.classList.add('fade-out');
 
-        setTimeout(() => {
-            // Step 2: Change text and prepare for fade in
-            currentIndex = (currentIndex + 1) % texts.length;
-            dynamicText.textContent = texts[currentIndex];
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % texts.length;
+                dynamicText.textContent = texts[currentIndex];
 
-            dynamicText.classList.remove('fade-out');
-            dynamicText.classList.add('fade-in');
+                dynamicText.classList.remove('fade-out');
+                dynamicText.classList.add('fade-in');
 
-            // Force reflow
-            void dynamicText.offsetWidth;
+                void dynamicText.offsetWidth;
 
-            // Step 3: Fade in the new text
-            dynamicText.classList.remove('fade-in');
-        }, 500); // Wait for fade-out transition (0.5s)
+                dynamicText.classList.remove('fade-in');
+            }, 500); 
+        }
+
+        setInterval(rotateText, 3000);
     }
 
-    // Set interval for rotation
-    setInterval(rotateText, 3000);
-
-    // Mobile Menu Toggle
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     const body = document.body;
@@ -63,29 +59,23 @@ document.addEventListener('DOMContentLoaded', () => {
             menuClose.addEventListener('click', () => toggleMenu(true));
         }
 
-        // Close menu when clicking a link
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => toggleMenu(true));
         });
     }
-    // SVG Flow Track — seamless loop duplication
     const svgTrack = document.querySelector('.svg-flow-track');
     if (svgTrack) {
-        // Keep only first 6 real items (remove any bad duplicates)
         const allItems = Array.from(svgTrack.querySelectorAll('.svg-item'));
         const originals = allItems.slice(0, 6);
 
-        // Remove everything past the 6 originals
         allItems.slice(6).forEach(el => el.remove());
 
-        // Clone the original 6 and append for seamless loop
         originals.forEach(item => {
             svgTrack.appendChild(item.cloneNode(true));
         });
     }
 
-    // Pricing Tab Loading Logic
     const pricingTabs = document.querySelectorAll('#pricingTabs .nav-link');
     const pricingLoader = document.getElementById('pricingLoader');
     const pricingPanes = document.querySelectorAll('.pricing-content .tab-pane');
@@ -96,11 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetId = e.target.getAttribute('data-bs-target');
                 const targetPane = document.querySelector(targetId);
 
-                // Show loader and hide ALL panes immediately
                 pricingLoader.classList.add('active');
                 pricingPanes.forEach(p => p.classList.add('loading-pane'));
 
-                // After 1.5 seconds, hide loader and show the single target pane
                 setTimeout(() => {
                     pricingLoader.classList.remove('active');
                     pricingPanes.forEach(p => p.classList.remove('loading-pane'));
@@ -109,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Video Modal Stop Logic
     const videoModalElement = document.getElementById('videoModal');
     const videoFrameElement = document.getElementById('salonVideoFrame');
     if (videoModalElement && videoFrameElement) {
@@ -120,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── Rebuilt Feedback Slider (Infinite Loop + Responsive) ──
     const fbContainer = document.querySelector('.feedback-slider-container');
     const fbTrack = document.getElementById('feedbackTrack');
     const fbDotsContainer = document.getElementById('feedbackDots');
@@ -128,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fbContainer && fbTrack) {
         let items = Array.from(fbTrack.children);
         let perView = window.innerWidth < 768 ? 1 : (window.innerWidth < 1200 ? 2 : 3);
-        const cardGap = perView === 1 ? 0 : 30; // Matches CSS responsive gap
+        const cardGap = perView === 1 ? 0 : 30;
         let currentIndex = perView; 
         let isDragging = false;
         let startPos = 0;
@@ -137,7 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let animationID;
         let autoSlideInterval;
 
-        // 1. Clone items for seamless loop
         const firstClones = items.slice(0, perView).map(el => el.cloneNode(true));
         const lastClones = items.slice(-perView).map(el => el.cloneNode(true));
         
@@ -146,18 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const allCards = Array.from(fbTrack.children);
 
-        // 2. Dots Logic (Once + Update)
         const initDots = () => {
             if (!fbDotsContainer) return;
             fbDotsContainer.innerHTML = '';
-            const pageCount = items.length > 6 ? 6 : items.length; // Max 6 clean dots
+            const pageCount = items.length > 6 ? 6 : items.length; 
             
             for (let i = 0; i < pageCount; i++) {
                 const dot = document.createElement('span');
                 dot.classList.add('dot');
                 dot.addEventListener('click', () => {
                     stopAutoSlide();
-                    // Maps dot index to card index
                     const targetCardIndex = Math.round((i / (pageCount - 1)) * (items.length - 1)) + perView;
                     goToIndex(targetCardIndex);
                     startAutoSlide();
@@ -170,7 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const dots = fbDotsContainer.querySelectorAll('.dot');
             if (dots.length === 0) return;
             
-            // Map current card progress to dot index
             const progress = (currentIndex - perView + items.length) % items.length;
             const activeDotIndex = Math.round((progress / (items.length - 1)) * (dots.length - 1));
             
@@ -198,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
             currentIndex = index;
             setPositionByIndex();
             
-            // Handle seamless jump
             setTimeout(() => {
                 if (currentIndex >= allCards.length - perView) {
                     currentIndex = perView;
@@ -211,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 600);
         };
 
-        // 3. Interactions
         const startAutoSlide = () => {
             autoSlideInterval = setInterval(() => {
                 goToIndex(currentIndex + 1);
@@ -222,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fbContainer.addEventListener('mouseenter', stopAutoSlide);
         fbContainer.addEventListener('mouseleave', startAutoSlide);
 
-        // Dragging
         const touchStart = (index) => (e) => {
             stopAutoSlide();
             isDragging = true;
@@ -262,20 +241,17 @@ document.addEventListener('DOMContentLoaded', () => {
         fbTrack.addEventListener('touchend', touchEnd);
         fbTrack.addEventListener('mouseleave', () => { if(isDragging) touchEnd(); });
 
-        // Resize
         window.addEventListener('resize', () => {
             perView = window.innerWidth < 768 ? 1 : (window.innerWidth < 1200 ? 2 : 3);
             setPositionByIndex(false);
         });
 
-        // Initialize
         initDots();
         setPositionByIndex(false);
         startAutoSlide();
         updateDots();
     }
 
-    // About Section Slideshow Logic
     const aboutSlideContainer = document.querySelector('.about-slideshow-container');
     if (aboutSlideContainer) {
         const slides = aboutSlideContainer.querySelectorAll('.about-slide');
@@ -289,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(nextAboutSlide, 2500);
     }
 
-    // Mobile Feature Stack Interaction
     const featureStackRow = document.querySelector('.features-cards-row');
     if (featureStackRow) {
         const stackItems = Array.from(featureStackRow.children);
@@ -299,15 +274,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (window.innerWidth >= 768) return;
 
                 if (!item.classList.contains('stack-active')) {
-                    // Remove ALL stack classes from all items
                     stackItems.forEach(el => {
                         el.classList.remove('stack-active', 'stack-behind-1', 'stack-behind-2');
                     });
                     
-                    // Set current item to ACTIVE (moves to bottom, but z-index front)
                     item.classList.add('stack-active');
                     
-                    // Assign others to the "Behind" positions (top tabs)
                     const others = stackItems.filter(el => el !== item);
                     if (others[0]) others[0].classList.add('stack-behind-1');
                     if (others[1]) others[1].classList.add('stack-behind-2');
@@ -315,9 +287,160 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Initialize (Third item is active to show the stack below it by default)
         if (window.innerWidth < 768 && stackItems[2]) {
             stackItems[2].click();
         }
     }
+
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    if (galleryItems.length > 0) {
+        const lightbox = document.createElement('div');
+        lightbox.id = 'galleryLightbox';
+        lightbox.className = 'gallery-custom-lightbox';
+        lightbox.innerHTML = `
+            <div class="lightbox-content">
+                <img src="" alt="Expanded Image" id="lightboxImage">
+                <button class="lightbox-close">&times;</button>
+            </div>
+        `;
+        document.body.appendChild(lightbox);
+
+        const lightboxImg = lightbox.querySelector('#lightboxImage');
+        const closeBtn = lightbox.querySelector('.lightbox-close');
+
+        const openLightbox = (src) => {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                const img = item.querySelector('img');
+                if (img) openLightbox(img.src);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.closest('.lightbox-content') === null || e.target.classList.contains('lightbox-content')) {
+                if(e.target !== lightboxImg) {
+                    closeLightbox();
+                }
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    }
+
+    const videoTrigger = document.querySelector('.video-gallery-trigger');
+    if (videoTrigger) {
+        const videoGridLightbox = document.createElement('div');
+        videoGridLightbox.className = 'video-grid-lightbox';
+        videoGridLightbox.innerHTML = `
+            <button class="video-grid-close">&times;</button>
+            <div class="video-grid-container">
+                <h2 class="video-grid-title">OUR VIDEO GALLERY</h2>
+                <div class="video-grid">
+                    ${Array(6).fill(`
+                        <div class="video-item">
+                            <video src="assets/gallery-video.mp4" muted loop></video>
+                            <div class="video-play-hint"><i class="fa-solid fa-play"></i></div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        document.body.appendChild(videoGridLightbox);
+
+        const fullscreenPlayer = document.createElement('div');
+        fullscreenPlayer.className = 'fullscreen-video-player';
+        fullscreenPlayer.innerHTML = `
+            <button class="player-close">&times;</button>
+            <video src="assets/gallery-video.mp4" controls autoplay></video>
+        `;
+        document.body.appendChild(fullscreenPlayer);
+
+        const gridVideos = videoGridLightbox.querySelectorAll('.video-item');
+        const fsVideo = fullscreenPlayer.querySelector('video');
+
+        videoTrigger.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            videoGridLightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            gridVideos.forEach(item => {
+                const v = item.querySelector('video');
+                item.addEventListener('mouseenter', () => v.play());
+                item.addEventListener('mouseleave', () => {
+                    v.pause();
+                    v.currentTime = 0;
+                });
+            });
+        });
+
+        gridVideos.forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.querySelector('video').src;
+                fsVideo.src = src;
+                fullscreenPlayer.classList.add('active');
+            });
+        });
+
+        const closeGrid = () => {
+            videoGridLightbox.classList.remove('active');
+            if (!fullscreenPlayer.classList.contains('active')) {
+                document.body.style.overflow = '';
+            }
+        };
+
+        const closePlayer = () => {
+            fullscreenPlayer.classList.remove('active');
+            fsVideo.pause();
+            if (!videoGridLightbox.classList.contains('active')) {
+                document.body.style.overflow = '';
+            }
+        };
+
+        videoGridLightbox.querySelector('.video-grid-close').addEventListener('click', closeGrid);
+        fullscreenPlayer.querySelector('.player-close').addEventListener('click', closePlayer);
+        
+        videoGridLightbox.addEventListener('click', (e) => {
+            if (e.target === videoGridLightbox) closeGrid();
+        });
+        fullscreenPlayer.addEventListener('click', (e) => {
+            if (e.target === fullscreenPlayer) closePlayer();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (fullscreenPlayer.classList.contains('active')) closePlayer();
+                else if (videoGridLightbox.classList.contains('active')) closeGrid();
+            }
+        });
+    }
+
+    const journeyReadMoreBtn = document.querySelector('.journey-read-more-btn');
+    const journeyBox = document.querySelector('.journey-content-box');
+    if (journeyReadMoreBtn && journeyBox) {
+        journeyReadMoreBtn.addEventListener('click', () => {
+            journeyBox.classList.toggle('expanded');
+            if (journeyBox.classList.contains('expanded')) {
+                journeyReadMoreBtn.innerHTML = 'Read Less <span class="ms-1"><i class="fa-solid fa-chevron-up"></i></span>';
+            } else {
+                journeyReadMoreBtn.innerHTML = 'Read More <span class="ms-1"><i class="fa-solid fa-chevron-down"></i></span>';
+            }
+        });
+    }
 });
+
+
